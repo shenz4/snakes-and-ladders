@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 public class Board {
     private int rows, cols;
+    private HashMap<Integer, Integer> deltaHashMap;
 
     public int getRows() {
         return rows;
@@ -18,9 +19,10 @@ public class Board {
     private Square[][] panel;
     private LinkedList<Player> players;
 
-    public Board(int rows, int cols) {
+    public Board(int rows, int cols, HashMap<Integer, Integer> hashMap) {
         this.rows = rows;
         this.cols = cols;
+        this.deltaHashMap = hashMap;
         initPanel();
     }
 
@@ -35,18 +37,7 @@ public class Board {
             }
         }
 
-        // Set panel's delta
-        HashMap<Integer, Integer> hashMap = new HashMap<>();
-        hashMap.put(18, 4);
-        hashMap.put(15, -1);
-        hashMap.put(29, -4);
-        hashMap.put(30, -1);
-        hashMap.put(32, -4);
-        hashMap.put(33, 2);
-        hashMap.put(34, -1);
-        hashMap.put(48, -3);
-
-        hashMap.forEach((key, value) -> {
+        deltaHashMap.forEach((key, value) -> {
             int[] res = new int[2];
             getRowCol(key, res);
             panel[res[0]][res[1]].setDelta(value);
