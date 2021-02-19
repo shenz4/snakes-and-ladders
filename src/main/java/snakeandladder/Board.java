@@ -95,14 +95,10 @@ public class Board {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-
-        builder.append("Board{")
-                .append("rows=").append(rows)
-                .append(", cols=").append(cols)
-                .append("}\n");
         for (int i = rows - 1; i >= 0; i--) {
             for (int j = 0; j < cols; j++) {
-                builder.append(String.format("%2d", panel[i][j].getPosition()))
+                builder.append(panel[i][j].getPlayers())
+                        .append(String.format("%3d", panel[i][j].getPosition()))
                         .append('(')
                         .append(String.format("%2d", panel[i][j].getDelta()))
                         .append(")  ");
@@ -110,12 +106,12 @@ public class Board {
             builder.append('\n');
         }
 
-        for (Player player : players) {
+/*        for (Player player : players) {
             builder.append(player.getName())
                     .append("'s position: ")
                     .append(player.getCurrentSquare().getPosition())
                     .append('\n');
-        }
+        }*/
         return builder.toString();
     }
 }

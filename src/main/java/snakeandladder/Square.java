@@ -1,10 +1,11 @@
 package snakeandladder;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Square {
     private int position;
-    private LinkedList<Player> players;
+    private ArrayList<Player> players;
     private int delta;
 
     public Square(int position) {
@@ -33,7 +34,7 @@ public class Square {
     public void addPlayer(Player p) {
 
         if (players == null) {
-            players = new LinkedList<>();
+            players = new ArrayList<>();
         }
 
         players.add(p);
@@ -42,6 +43,19 @@ public class Square {
     public boolean removePlayer(Player p) {
         players.remove(p);
         return true;
+    }
+
+    public String getPlayers() {
+        StringBuilder builder = new StringBuilder();
+
+        if (players == null) {
+            return String.format("%2s", " ");
+        }
+
+        for (Player player : players) {
+            builder.append(player.getName());
+        }
+        return String.format("%2s", builder.toString());
     }
 
     @Override

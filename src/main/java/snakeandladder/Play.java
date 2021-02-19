@@ -29,6 +29,8 @@ public class Play {
             Board gameBoard = new Board(10, 5, hashMap);
             gameBoard.putPlayer(autoPlayerE, 0);
             gameBoard.putPlayer(autoPlayerS, 0);
+            System.out.println("Board's rows=" + gameBoard.getRows() + ", cols=" + gameBoard.getCols());
+            System.out.println("Board's init state:");
             System.out.println(gameBoard.toString());
 
             // Play
@@ -42,6 +44,7 @@ public class Play {
             Board humanGameBoard = new Board(10, 5, hashMap);
             humanGameBoard.putPlayer(humanPlayerE, 0);
             humanGameBoard.putPlayer(humanPlayerS, 0);
+
             System.out.println(humanGameBoard.toString());
 
             while (!humanGameBoard.takeTurns()) ;

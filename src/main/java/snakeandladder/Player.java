@@ -36,6 +36,7 @@ public class Player {
     boolean move() {
         Random random = new Random();
         int step = random.nextInt(6) + 1;
+        System.out.println(this.name + " rolls the die for " + step);
         return moveTo(step);
     }
 
@@ -52,10 +53,11 @@ public class Player {
         oldSquare.removePlayer(this);
         newSquare.addPlayer(this);
         if (toPosition >= endPosition) {
-            System.out.println(name + " moves " + String.format("%2d", step) + " steps to position " + toPosition + ", which is at or beyond the game end");
+            System.out.println(name + " moves " + step + " steps from " + oldSquare.getPosition() + " to " + toPosition + ", which is at or beyond the game end");
+            System.out.println(gameBoard.toString());
             return true;
         } else {
-            System.out.println(name + " moves " + String.format("%2d", step) + " steps to position " + toPosition);
+            System.out.println(name + " moves " + step + " steps from " + oldSquare.getPosition() + " to " + toPosition);
             int delta;
             if ((delta = getCurrentSquare().getDelta()) != 0) {
                 int[] res = new int[2];
@@ -64,6 +66,7 @@ public class Player {
                 return slide(gameBoard.getPosition(res[0], res[1]), delta > 0 ? "up" : "down");
             }
         }
+        System.out.println(gameBoard.toString());
         return false;
     }
 
@@ -79,11 +82,12 @@ public class Player {
         newSquare.addPlayer(this);
 
         if (toPosition >= endPosition) {
-            System.out.println(name + " slides " + direction + " to position " + toPosition + ", which is at or beyond the game end");
+            System.out.println(name + " slides " + direction + " from " + oldSquare.getPosition() + " to " + toPosition + ", which is at or beyond the game end");
+            System.out.println(gameBoard.toString());
             return true;
         }
 
-        System.out.println(name + " slides " + direction + " to position " + toPosition);
+        System.out.println(name + " slides " + direction + " from " + oldSquare.getPosition() + " to " + toPosition);
         int delta;
         if ((delta = getCurrentSquare().getDelta()) != 0) {
             int[] res = new int[2];
@@ -91,6 +95,7 @@ public class Player {
             res[0] += delta;
             return slide(gameBoard.getPosition(res[0], res[1]), delta > 0 ? "up" : "down");
         }
+        System.out.println(gameBoard.toString());
         return false;
     }
 
